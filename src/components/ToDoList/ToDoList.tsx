@@ -1,20 +1,33 @@
 import { Form } from "../Form/Form";
 import { Task } from "../Task/Task";
 import { useState } from "react";
+import uuid from 'react-uuid';
 import clipboard from "../../assets/clipboard.png"
 
 import styles from "./ToDoList.module.css";
 
+export interface ITask {
+    id: string;
+    task: string;
+    done: boolean;
+}
 export function ToDoList() {
-    const [taskList, setTaskList] = useState([]);
-    const taskListIsEmpty = taskList.length;
+    const [taskList, setTaskList] = useState<ITask[]>([]);
+    const taskListIsEmpty = 1;
     
-    if(taskListIsEmpty){
-
+    const createNewTask = (task: string) => {
+        const newTask = {
+            id:uuid(),
+            task:task,
+            done:false,
+        }
+        setTaskList((oldTaskList) => 
+            [...oldTaskList, newTask]
+        );
     }
     return ( 
         <main className={styles.wrapper}>
-            <Form/>
+            <Form handleCreateNewTask={createNewTask} />
             <section className={styles.wrapper__task_container}>
                 <div className={styles.wrapper__info_progress}>
                     <strong>
@@ -28,10 +41,11 @@ export function ToDoList() {
                     taskListIsEmpty ? 
                     
                         <ul className={styles.wrapper__task_list}>
-                            <Task/>
-                            <Task/>
-                            <Task/>
-                            <Task/>
+                           {taskList.map((task) => 
+                                <Task key={task.id} task={task} />
+                            )}
+                            
+                     
                         </ul> 
                     :  
                         <div className={styles.wrapper__emptyList}>

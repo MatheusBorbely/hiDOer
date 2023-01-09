@@ -1,12 +1,16 @@
 import styles from "./Task.module.css";
 
 import {Trash} from "phosphor-react"
+import { ITask } from "../ToDoList/ToDoList";
 
-export function Task() {
+interface ITaskProp{
+    task:  ITask
+}
+export function Task(props: ITaskProp) {
     return ( 
         <li className={styles.task}>
             <label>
-                Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+                {props.task.task}
                 <input type="checkbox"/>
                 <span></span>
             </label>

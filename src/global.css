@@ -19,6 +19,7 @@
     --danger: #E25858;
 }
 
+
 :focus {
     outline: transparent !important;
     box-shadow: 0 0 2px var(--purple-active);
