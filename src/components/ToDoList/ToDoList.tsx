@@ -17,13 +17,12 @@ export function ToDoList() {
         const newTask = {
             id:uuid(),
             task:task,
-            done:false,
+            isDone:false,
         }
         setTaskList((oldTaskList) => 
             [...oldTaskList, newTask]
         );
     }
-
     const handleDeleteTask = (id: string) => {
         const newTaskList = taskList.filter( task => task.id !== id);
         setTaskList(newTaskList); 

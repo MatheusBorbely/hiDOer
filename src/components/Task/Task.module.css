@@ -10,8 +10,8 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
     border-radius: 8px;
     padding: 1rem;
-
 }
+
 .task svg {
   cursor: pointer;
   box-sizing: unset;
@@ -28,79 +28,79 @@
 
 
 .task label{
-    display: flex;
-    align-items: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
 
-    cursor: pointer;
-    font-size: 0.875rem;
-    padding-left: 1.8125rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    flex: 1;
-  }
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding-left: 1.8125rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  flex: 1;
+}
   
-  /* Hide the browser's default checkbox */
-  .task input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .task span {
-    position: absolute;
-    left: 0;
-    height: 1.0625rem;
-    width: 1.0625rem;
-    background-color: transparent;
-    border-radius: 20px;
-    border: 2px solid var(--blue);
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .task label:hover input ~ span {
-    border-color: var(--blue-dark);
-  }
+.task input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
 
-  .task label:hover input:checked ~ span {
-    border-color: var(--purple);
-    background-color: var(--purple);
-  }
+.task span {
+  position: absolute;
+  left: 0;
+  height: 1.0625rem;
+  width: 1.0625rem;
+  background-color: transparent;
+  border-radius: 20px;
+  border: 2px solid var(--blue);
+}
+
+.task label:hover input ~ span {
+  border-color: var(--blue-dark);
+}
+
+.task label:hover input:checked ~ span {
+  border-color: var(--purple);
+  background-color: var(--purple);
+}
+
+.task input:checked ~ span {
+  background-color: var(--purple-dark);
+  border: 2px solid transparent;
+}
+
+.task span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.task input:checked ~ span:after {
+  display: block;
+}
+
+.task span:after {
+  left: 4px;
+  top: 2px;
+  width: 3px;
+  height: 6px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
   
-  
-  /* When the checkbox is checked, add a blue background */
-  .task input:checked ~ span {
-    background-color: var(--purple-dark);
-    border: 2px solid transparent;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .task span:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .task input:checked ~ span:after {
-    display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .task span:after {
-    left: 4px;
-    top: 2px;
-    width: 3px;
-    height: 6px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    
-  }
+}
+
+.task__done{
+  border: 1px solid var(--gray-500);
+}
+.task__done label{
+  color: var(--gray-300);
+  text-decoration: line-through;
+}

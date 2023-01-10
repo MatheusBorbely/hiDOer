@@ -8,14 +8,14 @@ interface TaskProps{
     onDeleteTask: (id: string) => void;
 }
 export function Task(props: TaskProps) {
-    const {task: {id, task, done}, onDeleteTask} = props;
+    const {task: {id, task, isDone}, onDeleteTask} = props;
 
     const handleClick = () => {
         onDeleteTask(id);
         
     }
     return ( 
-        <li className={`${styles.task} ${done}`}>
+        <li className={`${styles.task} ${ !isDone && styles.task__done}` }>
             <label>
                 {task}
                 <input type="checkbox"/>
