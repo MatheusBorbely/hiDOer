@@ -45,3 +45,12 @@ body, input, textarea, button {
 li {
    list-style: none; 
 }
+
+@media screen and (max-width: 732px) {
+    html{
+        font-size: 87.5%;
+    }
+    main{
+        padding: 0 1rem;
+    }
+}
