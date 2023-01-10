@@ -2,11 +2,11 @@ import styles from "./Form.module.css";
 import { PlusCircle } from "phosphor-react"
 import { useState, ChangeEvent, FormEvent } from "react";
 
-interface IFormProp {
-    handleCreateNewTask: (task: string) => void;
+interface IFormProps {
+    onCreateNewTask: (task: string) => void;
 }
 
-export function Form({handleCreateNewTask}: IFormProp) {
+export function Form({onCreateNewTask}: IFormProps) {
     const [task, setTask] = useState<string>('');
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,13 +14,15 @@ export function Form({handleCreateNewTask}: IFormProp) {
     }
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        handleCreateNewTask(task);
+        onCreateNewTask(task);
         setTask('');
     }
     return ( 
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <input onChange={handleChange} value={task} type="text" placeholder="Adicione uma nova tarefa" />
-            <button>Criar <i><PlusCircle size={16} /> </i></button>
-        </form>
+        <section>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <input onChange={handleChange} value={task} type="text" placeholder="Adicione uma nova tarefa" />
+                <button>Criar <i><PlusCircle size={18} /> </i></button>
+            </form>
+        </section>
      );
 }

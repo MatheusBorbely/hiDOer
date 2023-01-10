@@ -1,21 +1,19 @@
 import { Form } from "../Form/Form";
 import { Task } from "../Task/Task";
+import {ITask} from "../../interfaces/ITask"
 import { useState } from "react";
 import uuid from 'react-uuid';
 import clipboard from "../../assets/clipboard.png"
 
 import styles from "./ToDoList.module.css";
 
-export interface ITask {
-    id: string;
-    task: string;
-    done: boolean;
-}
+
 export function ToDoList() {
     const [taskList, setTaskList] = useState<ITask[]>([]);
-    const taskListIsEmpty = 1;
-    
-    const createNewTask = (task: string) => {
+    const IsTaskListEmpty = taskList.length === 0;
+    const taskListLenght = taskList.length; 
+
+    const handleCreateNewTask = (task: string) => {
         const newTask = {
             id:uuid(),
             task:task,
@@ -25,24 +23,30 @@ export function ToDoList() {
             [...oldTaskList, newTask]
         );
     }
+
+    const handleDeleteTask = (id: string) => {
+        const newTaskList = taskList.filter( task => task.id !== id);
+        setTaskList(newTaskList); 
+    }
+
     return ( 
         <main className={styles.wrapper}>
-            <Form handleCreateNewTask={createNewTask} />
+            <Form onCreateNewTask={handleCreateNewTask} />
             <section className={styles.wrapper__task_container}>
                 <div className={styles.wrapper__info_progress}>
                     <strong>
-                        Tarefas criadas <span>0</span>
+                        Tarefas criadas <span>{taskListLenght}</span>
                     </strong>
                     <strong>
                         Concluídas <span>0 de 0</span>
                     </strong>
                 </div>
                 {
-                    taskListIsEmpty ? 
+                    !IsTaskListEmpty ? 
                     
                         <ul className={styles.wrapper__task_list}>
                            {taskList.map((task) => 
-                                <Task key={task.id} task={task} />
+                                <Task key={task.id} task={task} onDeleteTask={handleDeleteTask }  />
                             )}
                             
                      

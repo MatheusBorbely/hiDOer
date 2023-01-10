@@ -1,20 +1,27 @@
 import styles from "./Task.module.css";
 
 import {Trash} from "phosphor-react"
-import { ITask } from "../ToDoList/ToDoList";
+import { ITask } from "../../interfaces/ITask"
 
-interface ITaskProp{
-    task:  ITask
+interface TaskProps{
+    task:  ITask;
+    onDeleteTask: (id: string) => void;
 }
-export function Task(props: ITaskProp) {
+export function Task(props: TaskProps) {
+    const {task: {id, task, done}, onDeleteTask} = props;
+
+    const handleClick = () => {
+        onDeleteTask(id);
+        
+    }
     return ( 
-        <li className={styles.task}>
+        <li className={`${styles.task} ${done}`}>
             <label>
-                {props.task.task}
+                {task}
                 <input type="checkbox"/>
                 <span></span>
             </label>
-            <Trash size={16} />
+            <Trash size={16} onClick={handleClick} />
         </li>
      );
 }

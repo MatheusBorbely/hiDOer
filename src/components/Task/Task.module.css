@@ -12,6 +12,21 @@
     padding: 1rem;
 
 }
+.task svg {
+  cursor: pointer;
+  box-sizing: unset;
+  padding: 0.3125rem;
+}
+.task svg:hover line, .task svg:hover path {
+  stroke: var(--danger)
+}
+.task svg:hover {
+  
+  border-radius: 4px;
+  background: var(--gray-400);
+}
+
+
 .task label{
     display: flex;
     align-items: center;
@@ -24,6 +39,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    flex: 1;
   }
   
   /* Hide the browser's default checkbox */
@@ -47,9 +63,15 @@
   }
   
   /* On mouse-over, add a grey background color */
-  .task:hover input ~ span {
+  .task label:hover input ~ span {
     border-color: var(--blue-dark);
   }
+
+  .task label:hover input:checked ~ span {
+    border-color: var(--purple);
+    background-color: var(--purple);
+  }
+  
   
   /* When the checkbox is checked, add a blue background */
   .task input:checked ~ span {
