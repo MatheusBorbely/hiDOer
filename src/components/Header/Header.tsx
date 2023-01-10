@@ -9,7 +9,6 @@ export function Header() {
                 <span>to</span>
                 <span>do</span>
             </h1>
-            
         </header>
      );
 }

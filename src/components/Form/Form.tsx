@@ -1,12 +1,14 @@
 import styles from "./Form.module.css";
-import { PlusCircle } from "phosphor-react"
 import { useState, ChangeEvent, FormEvent, InvalidEvent } from "react";
 
-interface IFormProps {
+import { PlusCircle } from "phosphor-react"
+
+
+interface FormProps {
     onCreateNewTask: (task: string) => void;
 }
 
-export function Form({onCreateNewTask}: IFormProps) {
+export function Form({onCreateNewTask}: FormProps) {
     const [task, setTask] = useState<string>('');
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -6,22 +6,25 @@ import { ITask } from "../../interfaces/ITask"
 interface TaskProps{
     task:  ITask;
     onDeleteTask: (id: string) => void;
+    onFinishTask: (id: string) => void;
 }
 export function Task(props: TaskProps) {
-    const {task: {id, task, isDone}, onDeleteTask} = props;
+    const {task: {id, task, isDone}, onDeleteTask, onFinishTask} = props;
 
-    const handleClick = () => {
-        onDeleteTask(id);
-        
+    const handleDeleteTask = () => {
+        onDeleteTask(id);    
+    }
+    const handleFinishTask = () => {
+        onFinishTask(id);    
     }
     return ( 
-        <li className={`${styles.task} ${ !isDone && styles.task__done}` }>
-            <label>
+        <li className={`${styles.task} ${ isDone ? styles.task__done : ''}` } >
+            <label >
                 {task}
-                <input type="checkbox"/>
+                <input type="checkbox"onClick={handleFinishTask}/>
                 <span></span>
             </label>
-            <Trash size={16} onClick={handleClick} />
+            <Trash size={16} onClick={handleDeleteTask} />
         </li>
      );
 }
